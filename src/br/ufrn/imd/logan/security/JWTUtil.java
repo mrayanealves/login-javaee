@@ -22,10 +22,16 @@ public class JWTUtil {
 
 		SecretKeySpec key = new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS512.getJcaName());
 
-		return Jwts.builder().setIssuedAt(dateCreate).setSubject(subject).signWith(key).compact();
+		return Jwts.builder()
+				.setIssuedAt(dateCreate)
+				.setSubject(subject)
+				.signWith(key)
+				.compact();
 	}
 
 	public static Jws<Claims> decode(String token) {
-		return Jwts.parser().setSigningKey(key).parseClaimsJws(token);
+		return Jwts.parser()
+				.setSigningKey(key)
+				.parseClaimsJws(token);
 	}
 }

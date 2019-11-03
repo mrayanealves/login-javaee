@@ -1,6 +1,6 @@
 package br.ufrn.imd.logan.dto;
 
-public class Login {
+public class UsuarioDTO {
 	private String email;
 	
 	private String senha;

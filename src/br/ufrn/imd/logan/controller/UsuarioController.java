@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.Consumes;
 
-import br.ufrn.imd.logan.dto.Login;
+import br.ufrn.imd.logan.dto.UsuarioDTO;
 import br.ufrn.imd.logan.exception.LoginException;
 import br.ufrn.imd.logan.services.UsuarioService;
 
@@ -21,7 +21,7 @@ public class UsuarioController {
 	@POST
 	@Consumes("application/json; charset=UTF-8")
 	@Path("/")
-	public Response login(Login login) {
+	public Response login(UsuarioDTO login) {
 		try {
 			return Response.ok(service.login(login)).build();
 		} catch (LoginException e) {
