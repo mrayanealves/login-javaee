@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import br.ufrn.imd.logan.dto.UsuarioDTO;
 import br.ufrn.imd.logan.exception.LoginException;
 import br.ufrn.imd.logan.model.Usuario;
+import br.ufrn.imd.logan.repository.UsuarioRepository;
 import br.ufrn.imd.logan.security.JWTUtil;
-import br.ufrn.imd.repository.UsuarioRepository;
 
 @Stateless
 public class UsuarioService {

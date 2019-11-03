@@ -1,4 +1,4 @@
-package br.ufrn.imd.repository;
+package br.ufrn.imd.logan.repository;
 
 import java.util.Optional;
 
