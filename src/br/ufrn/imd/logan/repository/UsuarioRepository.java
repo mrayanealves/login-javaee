@@ -27,4 +27,16 @@ public class UsuarioRepository {
 			return Optional.empty();
 		}
 	}
+	
+	public Usuario buscarUsuarioPorEmail(String email) {
+		try {
+			Query query = em.createQuery("select u from Usuario u "
+					+ "where email = :email");
+			query.setParameter("email", email);
+			
+			return (Usuario) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 }

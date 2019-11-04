@@ -1,9 +1,11 @@
-package br.ufrn.imd.logan.filter;
+package br.ufrn.imd.logan.security;
 
 import java.io.IOException;
 import java.security.Principal;
 
 import javax.annotation.Priority;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -13,26 +15,22 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 
-import br.ufrn.imd.logan.security.JWTUtil;
-import br.ufrn.imd.logan.security.Security;
 import io.jsonwebtoken.Claims;
 
-@Security
+@Secured
 @Provider
 @Priority(Priorities.AUTHENTICATION)
-public class FiltroAutenticacao implements ContainerRequestFilter {
-
+public class AuthenticationFilter implements ContainerRequestFilter {
+	@Inject
+	@AuthenticatedUser
+	Event<String> userAuthenticatedEvent;
+	
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 		String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
-		if ((authorizationHeader == null)) {
-			System.out.println("Aqui");
+		if ((authorizationHeader == null) || (!authorizationHeader.startsWith("Bearer "))) {
 			throw new NotAuthorizedException("Authorization header required.");	
-		}
-		
-		if (!authorizationHeader.startsWith("Bearer ")) {
-			throw new NotAuthorizedException("Authorization header required.");
 		}
 
 		String token = authorizationHeader.substring("Bearer ".length()).trim();
@@ -44,19 +42,20 @@ public class FiltroAutenticacao implements ContainerRequestFilter {
 				throw new Exception("Token invalid.");
 			}
 			
-			this.modificarRequestContext(requestContext, claims.getId());
+			this.changeRequestContext(requestContext, claims.getSubject());
+			this.userAuthenticatedEvent.fire(claims.getSubject());
 		} catch (Exception e) {
 			e.printStackTrace();
 			requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
 		}
 	}
 
-	private void modificarRequestContext(ContainerRequestContext requestContext, String login) {
+	private void changeRequestContext(ContainerRequestContext requestContext, String login) {
 		final SecurityContext currentSecurityContext = requestContext.getSecurityContext();
 		requestContext.setSecurityContext(new SecurityContext() {
 
 			@Override
-			public Principal getUserPrincipal() {
+			public Principal getUserPrincipal() {				
 				return new Principal() {
 					@Override
 					public String getName() {

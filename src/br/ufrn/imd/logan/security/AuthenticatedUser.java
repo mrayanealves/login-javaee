@@ -5,10 +5,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import javax.ws.rs.NameBinding;
+import javax.inject.Qualifier;
 
-@NameBinding
+@Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE,ElementType.METHOD})
-public @interface Security {
+@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER })
+public @interface AuthenticatedUser {
 }

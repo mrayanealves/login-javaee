@@ -12,8 +12,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JWTUtil {
 	private static String key = "L0G4N01T0K3NS3CR3T4T1ONNn40f4C01D314d0Qu3C0L0C4R4QU1";
 
-	public static final String TOKEN_HEADER = "Authentication";
-
 	public static String create(String subject) {
 		Date dateCreate = new Date();
 		
