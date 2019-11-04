@@ -12,6 +12,11 @@ A prosta deste repositório é apresentar o desenvolvimento de um **login simple
 O que queremos é que o cliente solicite a API uma credencial de acesso a partir dos seus dados de login (neste caso, email e senha) e receba um token de acesso que deve ser enviado em todas as requisições protegidas da API.
 
 ### Desenvolvimento da aplicação
+Para realizar o login, a aplicação se comporta como mostra o diagrama de fluxo da Figura 1 a seguir:
+
+![Fluxo de login](images/fluxo_login.jpg)
+*Figura 1: Diagrama de fluxo do login*
+
 
 ### Referências
 1. https://stackoverflow.com/questions/26777083/best-practice-for-rest-token-based-authentication-with-jax-rs-and-jersey
