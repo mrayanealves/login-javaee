@@ -9,7 +9,7 @@ Desenvolvimento de um login em uma API RESTFull construída em JavaEE usando JWT
 ### Informações gerais
 A prosta deste repositório é apresentar o desenvolvimento de um **login simples** em uma API RESTFull JavaEE, baseada em Token.
 
-O que queremos é que o cliente solicite a API uma credencial de acesso a partir dos seus dados de login (neste caso, email e senha) e receba um token de acesso que deve ser enviado em todas as requisições protegidas da API.
+O que queremos é que o cliente solicite à API uma credencial de acesso a partir dos seus dados de login (neste caso, email e senha) e receba um token de acesso que deve ser enviado em todas as requisições protegidas da API.
 
 ### Desenvolvimento da aplicação
 Para realizar o login, a aplicação se comporta como mostra o diagrama de fluxo da Figura 1 a seguir:
