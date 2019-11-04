@@ -15,8 +15,20 @@ O que queremos é que o cliente solicite a API uma credencial de acesso a partir
 Para realizar o login, a aplicação se comporta como mostra o diagrama de fluxo da Figura 1 a seguir:
 
 ![Fluxo de login](images/fluxo_login.jpg)
-*Figura 1: Diagrama de fluxo do login*
 
+Sabendo disso, essa aplicação foi dividida nas seguintes classes de interação: 
+
+1. **UsuarioController**: Classe de controle que recebe a requisição do cliente com as informações para acesso do usuário, envia para o serviço fazer a autenticação (gerar token de acesso) e retorna esse token ao cliente (ou o status 401, caso ele não tenha acesso); 
+
+2. **UsuarioService**: Classe de negócip que recebe as credenciais do usuário (email e senha) provindas do controlador e envia para o repositório para buscar o usuário com aquelas credencias. Caso exista um usuário com aquele email e senha, envia para a classe **JWTUtil** gerar o token de acesso e envia-o para o controlador. Se não houver um usuário com essas credenciais, retorna uma exceção;
+
+3. **Usuário Repository**: Classe de acesso ao banco de dados que busca e retorna o usuário com o email e senha enviados do serviço;
+
+4. **JWTUtil**: Classe de apoio responsável por gerar e retornar o token de acesso.
+
+O diagrama de comunicação da Figura 2 a seguir, ilustra melhor essa interação.
+
+![Comunicação para login](images/comunicacao_login.jpg)
 
 ### Referências
 1. https://stackoverflow.com/questions/26777083/best-practice-for-rest-token-based-authentication-with-jax-rs-and-jersey
