@@ -33,6 +33,30 @@ O diagrama de comunicação da Figura 2 a seguir, ilustra melhor essa interaçã
 
 ![Comunicação para login](images/comunicacao_login.jpg)
 
+Assim, nesse primeiro momento, a classe UsuarioController.java estaria assim:
+
+~~~Java
+@Path("/")
+@Stateless
+public class UsuarioController {
+	@EJB
+	private UsuarioService service;
+	
+	@POST
+	@Consumes("application/json; charset=UTF-8")
+	@Path("/login")
+	public Response login(UsuarioDTO login) {
+		try {
+			return Response.ok(service.login(login)).build();
+		} catch (LoginException e) {
+			return Response.status(Status.UNAUTHORIZED).build();
+		} catch (Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+}
+~~~
+
 #### Autorização
 Com o usuário autenticado e o cliente de posse desse token, é necessário que a aplicação esteja protegida para ser acessada somente por quem possua esse token de acesso. Para isso, trabalhamos com as 5 classes presentes no pacote *br.ufrn.imd.logan.security*. 
 
