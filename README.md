@@ -20,7 +20,7 @@ Sabendo disso, essa aplicação foi dividida nas seguintes classes de interaçã
 
 1. **UsuarioController**: Classe de controle que recebe a requisição do cliente com as informações para acesso do usuário, envia para o serviço fazer a autenticação (gerar token de acesso) e retorna esse token ao cliente (ou o status 401, caso ele não tenha acesso); 
 
-2. **UsuarioService**: Classe de negócip que recebe as credenciais do usuário (email e senha) provindas do controlador e envia para o repositório para buscar o usuário com aquelas credencias. Caso exista um usuário com aquele email e senha, envia para a classe **JWTUtil** gerar o token de acesso e envia-o para o controlador. Se não houver um usuário com essas credenciais, retorna uma exceção;
+2. **UsuarioService**: Classe de negócio que recebe as credenciais do usuário (email e senha) provindas do controlador e envia para o repositório para buscar o usuário com aquelas credencias. Caso exista um usuário com aquele email e senha, esse serviço chama a classe **JWTUtil** para gerar o token de acesso e envia-o para o controlador. Se não houver um usuário com essas credenciais, retorna uma exceção;
 
 3. **Usuário Repository**: Classe de acesso ao banco de dados que busca e retorna o usuário com o email e senha enviados do serviço;
 
