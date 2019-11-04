@@ -13,7 +13,6 @@ O que queremos é que o cliente solicite a API uma credencial de acesso a partir
 
 ### Desenvolvimento da aplicação
 
-
 ### Referências
 1. https://stackoverflow.com/questions/26777083/best-practice-for-rest-token-based-authentication-with-jax-rs-and-jersey
 2. https://pt.linkedin.com/pulse/autentica%C3%A7%C3%A3o-baseada-em-token-uma-aplica%C3%A7%C3%A3o-rest-tarcisio-carvalho
