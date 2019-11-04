@@ -49,10 +49,6 @@ public class UsuarioController {
 	@Path("/usuario/logado")
 	@Secured
 	public Response logado(@Context SecurityContext securityContext) {	
-		// String login = securityContext.getUserPrincipal().getName();
-		
-		System.out.println(this.authenticatedUser);
-		
 		return Response.ok(this.authenticatedUser.getNome()).build(); 
 	}
 }

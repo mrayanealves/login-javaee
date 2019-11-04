@@ -19,11 +19,13 @@ public class JWTUtil {
 
 		SecretKeySpec key = new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS512.getJcaName());
 
-		return Jwts.builder()
-				.setIssuedAt(dateCreate)
-				.setSubject(subject)
-				.signWith(key)
-				.compact();
+		String token = Jwts.builder()
+					.setIssuedAt(dateCreate)
+					.setSubject(subject)
+					.signWith(key)
+					.compact();
+		
+		return "Bearer " + token;
 	}
 
 	public static Claims decode(String token) {
