@@ -33,6 +33,11 @@ O diagrama de comunicação da Figura 2 a seguir, ilustra melhor essa interaçã
 
 ![Comunicação para login](images/comunicacao_login.jpg)
 
+#### Autorização
+Com o usuário autenticado e o cliente de posse desse token, é necessário que a aplicação esteja protegida para ser acessada somente por quem possua esse token de acesso. Para isso, trabalhamos com as 5 classes presentes no pacote *br.ufrn.imd.logan.security*. 
+
+Primeiramente, podemos ilustrar o fluxo de interação dessa função com a Figura 3 a seguir:
+
 ### Referências
 1. https://stackoverflow.com/questions/26777083/best-practice-for-rest-token-based-authentication-with-jax-rs-and-jersey
 2. https://pt.linkedin.com/pulse/autentica%C3%A7%C3%A3o-baseada-em-token-uma-aplica%C3%A7%C3%A3o-rest-tarcisio-carvalho
