@@ -29,7 +29,7 @@ public class UsuarioController {
 	
 	@Inject
 	@AuthenticatedUser
-	Usuario authenticatedUser;
+	private Usuario authenticatedUser;
 	
 	@POST
 	@Consumes("application/json; charset=UTF-8")
