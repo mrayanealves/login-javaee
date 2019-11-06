@@ -57,15 +57,13 @@ Inicialmente, clone esse repositório na sua máquina e  importe esse projeto pa
 
 Tenha certificado de que haja um servidor Wildfly criado e funcionando normalmente e lembre de criar a conexão com seu banco de dados pela ferramenta de administração do seu servidor Wildfly (este projeto apenas referencia essa conexão previamente criada). O nome da base de dados que estamos trabalhando é **logan**. Mas você pode mudar isso quando estiver configurando seu banco de dados.
 
-Tendo isso funcionando, adicione esse projeto no seu servidor e o inicie. Se tudo estiver funcionando devidamente, teste a aplicação considerando as seguintes informações: 
+Tendo isso funcionando, adicione esse projeto no seu servidor e o inicie e crie um usuário de teste direto no seu banco de dados. Se tudo estiver funcionando devidamente, teste a aplicação considerando as seguintes informações: 
 
 1. Esse repositório só possuem duas possíveis requisições: a de login e uma requisição teste da autorização (ambas presentes em `UsuarioController`);
 
 2. Achamos melhor usar o Postman para construir suas requisições. Existem vários tutorias na internet que podem te ajudar a usá-lo, caso você não saiba. As referências que eu coloquei aqui podem servir como exemplo de como construir essas requisições;
 
-3. De qualquer forma, estou disponibilizando uma documentação do meu postman (nesta página)[] que mostram as requisições implementadas aqui; 
-
-4. Crie um usuário de teste direto no seu banco de dados;d
+3. De qualquer forma, estou disponibilizando uma documentação do meu postman (nesta página)[https://documenter.getpostman.com/view/6141382/SW15ybxw] que mostram as requisições usadas por mim nesse projeto; d
 Após requisitar o login e obter o seu token de acesso, existem dois bons casos de teste: no primeiro você deve requisitar a rota teste da autorização sem enviar o token de acesso; observe que o resultado será um status 401. Já no segundo requisite a mesma rota enviando o token de acesso gerado na sua requisição de login; o retorno dessa requisição deve ser, agora, o nome do usuário logado.
 
 E é isso!
