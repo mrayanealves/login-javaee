@@ -50,7 +50,7 @@ As classes atuantes nessa função foram
 
 4. **AuthenticatedUserProducer**: Classe que implementa a anotação definida como `@AuthenticatedUser` e produz o usuário a ser injetado no container a partir do login obtido do token. Em linhas gerais, quando o `AuthenticationFilter` decodifica o token, ele adiciona o login do usuário em um atributo definido como um `Event<String>` que usa a notação `@AuthenticatedUser`. Esse evento dispara o uso da classe `AuthenticatedUserProducer`, a qual busca o usuário com aquele login e cria uma instância dele que pode ser injetado em qualquer controlador. Essa injeção pode ser observada, nesse caso, na classe `UsuarioController`.
 
-Para uma explicação mais aprimorada do desenvolvimento dessa funcionalidade, consulte [este tutorial](https://stackoverflow.com/questions/26777083/best-practice-for-rest-token-based-authentication-with-jax-rs-and-jersey) que eu usei como base para o meu desenvolvimento.
+Para uma explicação mais aprimorada do desenvolvimento dessa funcionalidade, consulte [este tutorial](https://stackoverflow.com/questions/26777083/best-practice-for-rest-token-based-authentication-with-jax-rs-and-jersey), que eu usei como base para o meu desenvolvimento.
 
 ## Executando a aplicação
 Inicialmente, clone esse repositório na sua máquina e  importe esse projeto para o Eclipse JavaEE.
@@ -63,7 +63,8 @@ Tendo isso funcionando, adicione esse projeto no seu servidor e o inicie e crie 
 
 2. Achamos melhor usar o Postman para construir suas requisições. Existem vários tutorias na internet que podem te ajudar a usá-lo, caso você não saiba. As referências que eu coloquei aqui podem servir como exemplo de como construir essas requisições;
 
-3. De qualquer forma, estou disponibilizando uma documentação do meu postman (nesta página)[https://documenter.getpostman.com/view/6141382/SW15ybxw] que mostram as requisições usadas por mim nesse projeto; d
+3. De qualquer forma, estou disponibilizando uma documentação do meu postman [nesta página](https://documenter.getpostman.com/view/6141382/SW15ybxw) que mostram as requisições usadas por mim nesse projeto.
+
 Após requisitar o login e obter o seu token de acesso, existem dois bons casos de teste: no primeiro você deve requisitar a rota teste da autorização sem enviar o token de acesso; observe que o resultado será um status 401. Já no segundo requisite a mesma rota enviando o token de acesso gerado na sua requisição de login; o retorno dessa requisição deve ser, agora, o nome do usuário logado.
 
 E é isso!
