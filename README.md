@@ -1,20 +1,20 @@
 # Logan JavaEE
 Desenvolvimento de um login em uma API RESTFull construída em JavaEE usando JWT.
 
-### Tecnologias
+## Tecnologias
 1. Java
 2. JavaEE
 3. Java Web Token (JWT)
 
-### Informações gerais
-A prosta deste repositório é apresentar o desenvolvimento de um **login simples** em uma API RESTFull JavaEE, baseada em Token.
+## Informações gerais
+A prosta deste repositório é apresentar o desenvolvimento de um **login simples** em uma API RESTFull JavaEE, orientada a Token.
 
 O que queremos é que o cliente solicite à API uma credencial de acesso a partir dos seus dados de login (neste caso, email e senha) e receba um token de acesso que deve ser enviado em todas as requisições protegidas da API.
 
-### Desenvolvimento da aplicação
+## Desenvolvimento da aplicação
 A aplicação foi dividida em duas etapas: a **autenticação** (credenciar o usuário) e **autorização** (verificar se o usuário está autenticado).
 
-#### Autenticação
+### Autenticação
 Para realizar o login, a aplicação se comporta como mostra o diagrama de fluxo da Figura 1 a seguir:
 
 ![Fluxo de login](images/fluxo_login.jpg)
@@ -33,32 +33,8 @@ O diagrama de comunicação da Figura 2 a seguir, ilustra melhor essa interaçã
 
 ![Comunicação para login](images/comunicacao_login.jpg)
 
-Assim, nesse primeiro momento, a classe UsuarioController.java estaria assim:
-
-~~~Java
-@Path("/")
-@Stateless
-public class UsuarioController {
-	@EJB
-	private UsuarioService service;
-	
-	@POST
-	@Consumes("application/json; charset=UTF-8")
-	@Path("/login")
-	public Response login(UsuarioDTO login) {
-		try {
-			return Response.ok(service.login(login)).build();
-		} catch (LoginException e) {
-			return Response.status(Status.UNAUTHORIZED).build();
-		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-}
-~~~
-
 #### Autorização
-Com o usuário autenticado e o cliente de posse desse token, é necessário que a aplicação esteja protegida para ser acessada somente por quem possua esse token de acesso. Para isso, trabalhamos com as 5 classes presentes no pacote *br.ufrn.imd.logan.security*. 
+Com o usuário autenticado e o cliente de posse do token, é necessário que as rotas da aplicação estejam protegidas para serem acessadas somente por quem possua esse token de acesso. Para isso, trabalhamos com as classes presentes no pacote `br.ufrn.imd.logan.security`. 
 
 Primeiramente, podemos ilustrar o fluxo de interação dessa função com a Figura 3 a seguir:
 
