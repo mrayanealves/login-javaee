@@ -17,7 +17,7 @@ A aplicação foi dividida em duas etapas: a **autenticação** (credenciar o us
 ### Autenticação
 Para realizar o login, a aplicação se comporta como mostra o diagrama de fluxo da Figura 1 a seguir:
 
-![Fluxo de login](images/login_fluxo.jpg)
+![Fluxo de login](images/fluxo_login.jpg)
 
 Sabendo disso, essa interação foi dividida nas seguintes classes princiais: 
 
