@@ -7,10 +7,15 @@ import br.ufrn.imd.logan.dto.Login;
 import br.ufrn.imd.logan.exception.LoginException;
 import br.ufrn.imd.logan.model.Usuario;
 import br.ufrn.imd.logan.repository.UsuarioRepository;
+import br.ufrn.imd.logan.security.AuthenticatedUser;
 import br.ufrn.imd.logan.security.JWTUtil;
 
 @Stateless
 public class UsuarioService {
+	
+	@Inject
+	@AuthenticatedUser
+	private Usuario authenticatedUser;
 	
 	@Inject
 	private UsuarioRepository repository;
@@ -24,5 +29,9 @@ public class UsuarioService {
 		}
 		
 		return JWTUtil.create(usuarioCadastrado.getEmail());
+	}
+	
+	public String usuarioLogado() {
+		return (String) authenticatedUser.getNome();
 	}
 }

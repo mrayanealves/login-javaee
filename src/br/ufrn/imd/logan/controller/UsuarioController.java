@@ -2,7 +2,6 @@ package br.ufrn.imd.logan.controller;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,8 +13,6 @@ import javax.ws.rs.GET;
 
 import br.ufrn.imd.logan.dto.Login;
 import br.ufrn.imd.logan.exception.LoginException;
-import br.ufrn.imd.logan.model.Usuario;
-import br.ufrn.imd.logan.security.AuthenticatedUser;
 import br.ufrn.imd.logan.security.Secured;
 import br.ufrn.imd.logan.services.UsuarioService;
 
@@ -24,10 +21,6 @@ import br.ufrn.imd.logan.services.UsuarioService;
 public class UsuarioController {
 	@EJB
 	private UsuarioService service;
-	
-	@Inject
-	@AuthenticatedUser
-	private Usuario authenticatedUser;
 	
 	@POST
 	@Consumes("application/json; charset=UTF-8")
@@ -47,6 +40,6 @@ public class UsuarioController {
 	@Path("/usuario/logado")
 	@Secured
 	public Response logado() {	
-		return Response.ok(this.authenticatedUser.getNome()).build(); 
+		return Response.ok(service.usuarioLogado()).build(); 
 	}
 }
